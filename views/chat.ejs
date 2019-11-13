@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chat page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <style>
+        .container-fluid {
+            background-color: orange;
+            border-radius: 10px;
+            opacity: 10px;
+            text-align: center;
+            padding: 5px;
+            max-width: 600px;
+            margin-top: 100px;
+        }
+
+        #chatmessages {
+            background-color: black;
+            border-radius: 10px;
+            opacity: 10px;
+            text-align: center;
+            padding: 5px;
+            max-width: 900px;
+            margin-top: 10px;
+            max-height: 700px;
+            overflow: auto;
+        }
+
+        div.chatmessages::-webkit-scrollbar {
+            width: 5px !important;
+        }
+
+        #username {
+            max-width: 400px;
+            margin-left: 100px;
+        }
+
+        #phonenumber {
+            max-width: 400px;
+            margin-left: 100px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        hr {
+            display: block;
+            overflow: hidden;
+            border-style: inset;
+            border-width: 1px;
+            background-color: aliceblue;
+            color: aliceblue;
+        }
+
+        #sendbutton {
+            display: inline;
+        }
+
+        #chatinput {
+            margin-top: 5px;
+            ;
+            max-width: 830px;
+            margin-left: 100px;
+            display: inline;
+        }
+    </style>
+</head>
+
+<body style="background-color: black; font-family: 'Source Sans Pro', sans-serif;">
+    <!-- chatscreeen -->
+
+    <div id="chatscreen">
+        <h2 style="color: aliceblue;">Start chatting say Hi!</h2>
+        <hr style="color: aliceblue;">
+    </div>
+
+    <!-- to append messages -->
+    <div class="container-fluid" id="chatmessages">
+
+    </div>
+
+    <!-- to send messages -->
+    <div class="container" style="margin-top: 10px; bottom:0; postion: fixed;">
+        <form action="" id="chatform">
+            <input type="text" class="form-control" id="chatinput" autocomplete="off" placeholder="type your message here" />
+            <button class="btn btn-primary" id="sendbutton">send</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        $(() => {
+            var socket = io();
+
+            $('#chatform').submit((e) => {
+                console.log("inside fucntion");
+                e.preventDefault();
+                $('#chatmessages').append('<div style="color:aliceblue; text-align: right;">'+ $('#chatinput').val()+ '</div>');
+                $('#chatinput').val('');
+                return false
+            });
+        });
+    </script>
+
+</body>
+
+</html>
